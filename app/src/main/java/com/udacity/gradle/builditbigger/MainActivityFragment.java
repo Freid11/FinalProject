@@ -52,7 +52,7 @@ public class MainActivityFragment extends Fragment {
         });
 
         mInterstitialAd = new InterstitialAd(getContext());
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getContext().getResources().getString(R.string.banner_id));
         if(BuildConfig.FLAVOR.equals(FREE)) {
             mInterstitialAd.loadAd(new AdRequest.Builder().build());
         }

@@ -20,6 +20,7 @@ import java.sql.Time;
 import google.louco.com.jokeinterface.JokeActivity;
 
 public class EndpointsAsyncTask extends AsyncTask<Pair<Context, GroupObject>, Void, String> {
+    public static final String HTTPath = " http://10.0.3.3:8080/_ah/api/";
     private MyApi myApiService = null;
     @SuppressLint("StaticFieldLeak")
     private Context context;
@@ -35,7 +36,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, GroupObject>, Vo
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl(" http://10.0.3.3:8080/_ah/api/")
+                    .setRootUrl(HTTPath)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) {
