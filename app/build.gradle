@@ -35,12 +35,10 @@ android {
         free {
             dimension "tier"
             applicationId "com.udacity.gradle.builditbigger.free"
-
         }
         paid {
             dimension "tier"
             applicationId "com.udacity.gradle.builditbigger.paid"
-
         }
     }
 }

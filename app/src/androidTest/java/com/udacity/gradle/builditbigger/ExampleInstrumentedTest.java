@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
+import static junit.framework.Assert.assertEquals;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -34,11 +36,15 @@ public class ExampleInstrumentedTest {
                 });
 
         MyApi myApi = builder.build();
-
+        String startJoke = "Hi, ";
+        String Name = "LOUCO";
         try {
-            myApi.sayHi("LOUCO").execute().getData();
+            String joke = myApi.sayHi(Name).execute().getData();
+            assertEquals(joke ,startJoke+Name);
         } catch (IOException e) {
+            assertEquals(e ,startJoke+Name);
             e.printStackTrace();
         }
+
     }
 }

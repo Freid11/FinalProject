@@ -53,9 +53,7 @@ public class MainActivityFragment extends Fragment {
 
         mInterstitialAd = new InterstitialAd(getContext());
         mInterstitialAd.setAdUnitId(getContext().getResources().getString(R.string.banner_id));
-        if(BuildConfig.FLAVOR.equals(FREE)) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        }
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
@@ -66,17 +64,15 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
-        if(productFl.equals(FREE)) {
-            AdView mAdView = root.findViewById(R.id.adView);
-            // Create an ad request. Check logcat output for the hashed device ID to
-            // get test ads on a physical device. e.g.
-            // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
+        AdView mAdView = root.findViewById(R.id.adView);
+        // Create an ad request. Check logcat output for the hashed device ID to
+        // get test ads on a physical device. e.g.
+        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
 
-            mAdView.loadAd(adRequest);
-        }
+        mAdView.loadAd(adRequest);
 
         return root;
     }
