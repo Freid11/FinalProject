@@ -1,6 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
+import java.util.concurrent.ExecutionException;
+
+import google.louco.com.jokeinterface.JokeActivity;
 import google.louco.com.jokelib.MyClass;
 
 import static com.udacity.gradle.builditbigger.MainActivity.FREE;
@@ -84,7 +88,23 @@ public class MainActivityFragment extends Fragment {
 
     private void showJoke(){
         progressBar.setVisibility(View.VISIBLE);
-        new EndpointsAsyncTask().execute(new Pair<Context, GroupObject>(getContext(), new GroupObject(progressBar, "Louco")));
+        EndpointsAsyncTask endpointsAsyncTask =  new EndpointsAsyncTask();
+        endpointsAsyncTask.execute(new Pair<Context, GroupObject>(getContext(), new GroupObject(progressBar, "Louco")));
+
+        String result = null;
+        try {
+            result = endpointsAsyncTask.get();
+            if(!result.isEmpty()) {
+                Intent intent = new Intent(getContext(), JokeActivity.class);
+                intent.putExtra(JokeActivity.JOKE_KEY, result);
+                getContext().startActivity(intent);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void tellJoke() {

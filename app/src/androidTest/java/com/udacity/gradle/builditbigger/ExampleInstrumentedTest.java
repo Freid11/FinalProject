@@ -1,6 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.util.Pair;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -13,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -46,5 +49,23 @@ public class ExampleInstrumentedTest {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void testAsync(){
+        String startJoke = "Hi, ";
+        String Name = "LOUCO";
+
+        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
+        endpointsAsyncTask.execute(new Pair<Context, GroupObject>(null, new GroupObject(null, Name)));
+        String joke = null;
+        try {
+            joke = endpointsAsyncTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        assertEquals(joke ,startJoke+Name);
     }
 }

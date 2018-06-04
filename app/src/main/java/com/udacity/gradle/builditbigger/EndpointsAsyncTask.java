@@ -60,12 +60,9 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, GroupObject>, Vo
 
     @Override
     protected void onPostExecute(String result) {
-        progressBar.setVisibility(View.GONE);
-        if(!result.isEmpty()) {
-            Intent intent = new Intent(context, JokeActivity.class);
-            intent.putExtra(JokeActivity.JOKE_KEY, result);
-            context.startActivity(intent);
-        }
+        if(progressBar != null)
+            progressBar.setVisibility(View.GONE);
+
     }
 
 }
