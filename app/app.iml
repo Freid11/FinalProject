@@ -239,5 +239,9 @@
     <orderEntry type="module" module-name="jokeinterface" />
     <orderEntry type="module" module-name="JokeLib" />
     <orderEntry type="module" module-name="jokeinterface" />
+    <orderEntry type="module" module-name="JokeLib" />
+    <orderEntry type="module" module-name="jokeinterface" />
+    <orderEntry type="module" module-name="JokeLib" />
+    <orderEntry type="module" module-name="jokeinterface" />
   </component>
 </module>
